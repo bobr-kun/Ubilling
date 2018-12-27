@@ -3008,8 +3008,7 @@ $lang['def']['Additional login'] = 'Дополнительный логин';
 $lang['def']['report'] = 'отчет';
 $lang['def']['Tasks creation per-admin stats'] = 'Создание задач администраторами';
 $lang['def']['right to control TrinityTV'] = 'Право управлять TrinityTV';
-$lang['def']['guessed'] = 'угадано';
-$lang['def']['No charts'] = 'Без графиков';
+$lang['def'][''] = '';
 $lang['def'][''] = '';
 
 ?>

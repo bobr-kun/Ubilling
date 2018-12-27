@@ -1,7 +1,7 @@
 <?php
 
 if (cfr('MULTINET')) {
-    $altcfg = $ubillingConfig->getAlter();
+    $altcfg = rcms_parse_ini_file(CONFIG_PATH . 'alter.ini');
 
     //adding new network
     if (isset($_POST['addnet'])) {
@@ -60,7 +60,7 @@ if (cfr('MULTINET')) {
     }
 
     //network and services display
-    if ((!isset($_GET['editnet'])) AND ( !isset($_GET['editservice'])) AND ( !isset($_GET['freeipstats']))) {
+    if ((!isset($_GET['editnet'])) AND ( !isset($_GET['editservice']))) {
         multinet_show_available_networks();
         multinet_show_networks_create_form();
 
@@ -104,15 +104,6 @@ if (cfr('MULTINET')) {
                 }
             }
             multinet_show_serviceeditform($editservice);
-        }
-
-        //network stats
-        if (isset($_GET['freeipstats'])) {
-            $freeIpStats = web_FreeIpStats();
-            $freeIpStats .= wf_BackLink('?module=multinet');
-            $freeIpStats .= wf_Link('?module=multinet&freeipstats=true', wf_img('skins/done_icon.png') . ' ' . __('Services'), false, 'ubButton');
-            $freeIpStats .= wf_Link('?module=multinet&freeipstats=true&allnets=true', wf_img('skins/categories_icon.png') . ' ' . __('All networks'), false, 'ubButton');
-            show_window(__('IP usage stats'), $freeIpStats);
         }
     }
 } else {
