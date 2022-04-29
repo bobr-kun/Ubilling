@@ -1338,6 +1338,7 @@ class Banksta2 {
         $fiscalDataArray = array();
         $insatiability   = false;
 
+        // prepare re-fiscalize payments data for those with errors occurred at previous attempt
         if ($dreamkasEnabled and wf_CheckPost(array('bankstapaymentsfiscalize'))) {
             $DreamKas = null;
             $greed = new Avarice();
@@ -1381,9 +1382,12 @@ class Banksta2 {
         }
 
         if (!empty($paymentsToPush)) {
-
             $ukv = new UkvSystem();
             $allParentUsers = ($checkForCorpUsers and !$refiscalize) ? cu_GetAllParentUsers() : array();
+
+            if (!empty($insatiability) and ($needToFiscalize or $refiscalize)) {
+                $DreamKas = new DreamKas();
+            }
 
             foreach ($paymentsToPush as $eachRecID => $eachRec) {
                 $paymentSuccessful = false;
@@ -1452,7 +1456,7 @@ class Banksta2 {
                     and isset($fiscalDataArray[$eachRecID])
                     and ($paymentSuccessful or $refiscalize) ) {
 
-                    $DreamKas = new DreamKas();
+//                    $DreamKas = new DreamKas();
 
                     $rapacity_a = $insatiability['M']['KICKUP'];
                     $rapacity_b = $insatiability['M']['PICKUP'];
