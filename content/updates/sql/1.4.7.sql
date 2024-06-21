@@ -1,0 +1,1 @@
+ALTER TABLE `contrahens_extinfo` ADD `paysys_callback_url` VARCHAR(255) NOT NULL DEFAULT '';
