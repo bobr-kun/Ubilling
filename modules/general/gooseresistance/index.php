@@ -78,7 +78,7 @@ if (cfr('GOOSE')) {
         if (ubRouting::checkGet(array($gr::ROUTE_CD_DELKEY, $gr::ROUTE_SP_CUSTDATA))) {
             $gr->deleteCustDataField(
                 ubRouting::get($gr::ROUTE_SP_CUSTDATA),
-                ubRouting::get($gr::ROUTE_CD_DELKEY),
+                ubRouting::get($gr::ROUTE_CD_DELKEY)
             );
             ubRouting::nav($gr::URL_ME . '&' . $gr::ROUTE_SP_CUSTDATA . '=' . ubRouting::get($gr::ROUTE_SP_CUSTDATA));
         }
@@ -91,6 +91,7 @@ if (cfr('GOOSE')) {
                 show_window(__('Custom data'), $gr->renderCustomDataEditor(ubRouting::get($gr::ROUTE_SP_CUSTDATA, 'int')));
             } else {
                 show_window(__('Available strategies'), $gr->renderStrategiesList());
+                zb_BillingStats(true, 'goose');
                 //strategies testing here
                 if (ubRouting::checkPost($gr::PROUTE_CH_USER)) {
                     $checkUserLogin = ubRouting::post($gr::PROUTE_CH_USER, 'login');
